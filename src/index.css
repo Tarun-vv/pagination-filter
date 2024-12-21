@@ -18,3 +18,14 @@
 .margin-lg {
   margin-top: 3rem;
 }
+
+/* LIGHT / DARK */
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
