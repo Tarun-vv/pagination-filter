@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
+// NOTE: magic number that says how many elements must be present per page
+const PAGE_SIZE = 10;
+
 function PaginationComponent() {
   // NOTE: getting data
   const [posts, setPosts] = useState([]);
@@ -16,7 +19,7 @@ function PaginationComponent() {
     ? 1
     : Number(searchParams.get("page"));
   // NOTE: 10 means we need 10 items to be on one page -> count = total page / 10 , 10 is the magic number
-  const pageCount = Math.ceil(count / 10);
+  const pageCount = Math.ceil(count / PAGE_SIZE);
 
   // NOTE: create nextPage and prevPage event handlers
   function nextPage() {
