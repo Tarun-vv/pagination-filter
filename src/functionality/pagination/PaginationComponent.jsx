@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 // NOTE: magic number that says how many elements must be present per page
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 5;
 
 function PaginationComponent() {
   // NOTE: getting data
@@ -42,15 +42,15 @@ function PaginationComponent() {
     fetchData();
   }, []);
 
-  // NOTE: no pagination if only one page
-  if (pageCount <= 1) return null;
-
   if (currentPage) {
-    const from = (currentPage - 1) * 10;
-    const to = from + 10;
+    const from = (currentPage - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE;
 
     result = result.slice(from, to);
   }
+
+  // NOTE: no pagination if only one page
+  if (pageCount <= 1) return null;
 
   return (
     <div>
@@ -67,11 +67,11 @@ function PaginationComponent() {
         <p>
           Showing {/* 10 is the magic number */}
           <span style={{ fontWeight: "bold" }}>
-            {(currentPage - 1) * 10 + 1}
+            {(currentPage - 1) * PAGE_SIZE + 1}
           </span>{" "}
           to{" "}
           <span style={{ fontWeight: "bold" }}>
-            {currentPage === pageCount ? count : currentPage * 10}
+            {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
           </span>{" "}
           of <span style={{ fontWeight: "bold" }}>{count}</span> results
         </p>
@@ -87,3 +87,4 @@ function PaginationComponent() {
 }
 
 export default PaginationComponent;
+
